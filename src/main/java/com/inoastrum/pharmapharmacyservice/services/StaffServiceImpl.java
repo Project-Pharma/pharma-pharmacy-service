@@ -1,16 +1,13 @@
 package com.inoastrum.pharmapharmacyservice.services;
 
-import com.inoastrum.pharmapharmacyservice.domain.Staff;
+import com.inoastrum.pharmapharmacyservice.repositories.StaffRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
-import java.util.UUID;
-
+@RequiredArgsConstructor
 @Service
 public class StaffServiceImpl implements StaffService {
-    @Override
-    public Set<Staff> findAllStaffsByPharmacyId(UUID pharmacyId) {
-        // todo impl
-        return null;
-    }
+
+    private final StaffRepository staffRepository;
+
 }
