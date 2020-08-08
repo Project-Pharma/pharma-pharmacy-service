@@ -6,4 +6,6 @@ import java.util.UUID;
 
 public interface PharmacyService {
     PharmacyDto findPharmacyById(UUID pharmacyId);
+
+    PharmacyDto saveNewPharmacy(PharmacyDto pharmacyDto);
 }

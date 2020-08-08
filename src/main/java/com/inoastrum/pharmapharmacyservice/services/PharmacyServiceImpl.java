@@ -22,4 +22,11 @@ public class PharmacyServiceImpl implements PharmacyService {
                 pharmacyRepository.findById(pharmacyId)
                         .orElseThrow(PharmacyNotFoundException::new));
     }
+
+    @Override
+    public PharmacyDto saveNewPharmacy(PharmacyDto pharmacyDto) {
+        return pharmacyMapper.pharmacyToPharmacyDto(
+                pharmacyRepository.save(pharmacyMapper.pharmacyDtoToPharmacy(pharmacyDto))
+        );
+    }
 }
