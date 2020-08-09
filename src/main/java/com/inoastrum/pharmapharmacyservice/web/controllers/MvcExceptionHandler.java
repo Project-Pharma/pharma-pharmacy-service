@@ -16,16 +16,16 @@ import java.util.List;
 public class MvcExceptionHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<List> validationErrorHandler(ConstraintViolationException ex){
+    public ResponseEntity<ErrorObject> validationErrorHandler(ConstraintViolationException ex){
         List<String> errorsList = new ArrayList<>(ex.getConstraintViolations().size());
 
         ex.getConstraintViolations().forEach(error -> errorsList.add(error.toString()));
 
-        return new ResponseEntity<>(errorsList, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorObject(errorsList, ex.getClass()), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler({PharmacyNotFoundException.class, StaffNotFoundException.class})
     public ResponseEntity<ErrorObject> notFoundHandler(Exception e) {
-        return new ResponseEntity<>(new ErrorObject(e.getMessage(), e.getClass()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ErrorObject(List.of(e.getMessage()), e.getClass()), HttpStatus.NOT_FOUND);
     }
 }

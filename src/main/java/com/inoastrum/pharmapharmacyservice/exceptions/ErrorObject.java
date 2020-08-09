@@ -3,14 +3,16 @@ package com.inoastrum.pharmapharmacyservice.exceptions;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class ErrorObject {
-    private final String message;
+    private final List<String> messages;
     private final Class<? extends Exception> errorClass;
 
-    public ErrorObject(String message, Class<? extends Exception> errorClass) {
-        this.message = message;
+    public ErrorObject(List<String> messages, Class<? extends Exception> errorClass) {
+        this.messages = messages;
         this.errorClass = errorClass;
     }
 }
