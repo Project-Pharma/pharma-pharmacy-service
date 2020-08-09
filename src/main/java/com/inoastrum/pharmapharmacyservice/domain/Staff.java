@@ -38,4 +38,7 @@ public class Staff {
     @ManyToOne
     @JoinColumn(name = "pharmacy_id", nullable = false)
     private Pharmacy pharmacy;
+
+    private String name;
+    private UUID roleId;
 }
