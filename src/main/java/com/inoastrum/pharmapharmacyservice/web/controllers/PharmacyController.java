@@ -21,7 +21,7 @@ public class PharmacyController {
 
     @GetMapping("/{pharmacyId}")
     public ResponseEntity<PharmacyDto> getPharmacyById(@PathVariable UUID pharmacyId) {
-        return new ResponseEntity<>(pharmacyService.findPharmacyById(pharmacyId), HttpStatus.OK);
+        return new ResponseEntity<>(pharmacyService.findPharmacyDtoById(pharmacyId), HttpStatus.OK);
     }
 
     @PostMapping
@@ -33,6 +33,12 @@ public class PharmacyController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updatePharmacy(@PathVariable UUID pharmacyId, @RequestBody @Validated PharmacyDto pharmacyDto) {
         pharmacyService.updatePharmacy(pharmacyId, pharmacyDto);
+    }
+
+    @DeleteMapping("/{pharmacyId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletePharmacy(@PathVariable UUID pharmacyId) {
+        pharmacyService.deletePharmacyById(pharmacyId);
     }
 
 }

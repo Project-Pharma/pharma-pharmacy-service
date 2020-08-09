@@ -18,7 +18,7 @@ public class PharmacyServiceImpl implements PharmacyService {
     private final PharmacyMapper pharmacyMapper;
 
     @Override
-    public PharmacyDto findPharmacyById(UUID pharmacyId) {
+    public PharmacyDto findPharmacyDtoById(UUID pharmacyId) {
         return pharmacyMapper.pharmacyToPharmacyDto(
                 pharmacyRepository.findById(pharmacyId)
                         .orElseThrow(PharmacyNotFoundException::new));
@@ -44,5 +44,18 @@ public class PharmacyServiceImpl implements PharmacyService {
         pharmacy.setAddress(pharmacyDto.getAddress());
 
         pharmacyRepository.save(pharmacy);
+    }
+
+    @Override
+    public void deletePharmacyById(UUID pharmacyId) {
+        if (pharmacyRepository.findById(pharmacyId).isEmpty())
+            throw new PharmacyNotFoundException();
+
+        pharmacyRepository.deleteById(pharmacyId);
+    }
+
+    @Override
+    public Pharmacy findPharmacyById(UUID pharmacyId) {
+        return pharmacyRepository.findById(pharmacyId).orElse(null);
     }
 }

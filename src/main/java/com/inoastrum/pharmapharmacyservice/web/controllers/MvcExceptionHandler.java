@@ -1,6 +1,7 @@
 package com.inoastrum.pharmapharmacyservice.web.controllers;
 
 import com.inoastrum.pharmapharmacyservice.exceptions.PharmacyNotFoundException;
+import com.inoastrum.pharmapharmacyservice.exceptions.StaffNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -23,8 +24,8 @@ public class MvcExceptionHandler {
         return new ResponseEntity<>(errorsList, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(PharmacyNotFoundException.class)
+    @ExceptionHandler({PharmacyNotFoundException.class, StaffNotFoundException.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public void pharmacyNotFoundHandler(PharmacyNotFoundException ex) {
+    public void notFoundHandler() {
     }
 }

@@ -55,7 +55,7 @@ class PharmacyControllerTest {
 
     @Test
     void getPharmacyById() throws Exception {
-        given(pharmacyService.findPharmacyById(any(UUID.class))).willReturn(getValidDto());
+        given(pharmacyService.findPharmacyDtoById(any(UUID.class))).willReturn(getValidDto());
 
         ConstrainedFields fields = new ConstrainedFields(PharmacyDto.class);
 
@@ -125,6 +125,19 @@ class PharmacyControllerTest {
                                 fields.withPath("name").description("Name of the pharmacy"),
                                 fields.withPath("address").description("Address of the pharmacy"),
                                 fields.withPath("delivering").description("Is this pharmacy delivering").optional()
+                        )));
+    }
+
+    @Test
+    void deletePharmacy() throws Exception {
+        ConstrainedFields fields = new ConstrainedFields(PharmacyDto.class);
+
+        mockMvc.perform(delete("/api/v1/pharmacy/{pharmacyId}", UUID.randomUUID().toString())
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent())
+                .andDo(document("v1/pharmacy-delete",
+                        pathParameters(
+                                parameterWithName("pharmacyId").description("UUID of desired pharmacy to delete")
                         )));
     }
 

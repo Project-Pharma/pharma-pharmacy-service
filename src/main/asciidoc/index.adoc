@@ -66,3 +66,24 @@ include::{snippets}/v1/pharmacy-put/response-body.adoc[]
 
 Request Fields:
 include::{snippets}/v1/pharmacy-put/request-fields.adoc[]
+
+
+DELETE PHARMACY
+
+One showing how to make a request using cURL:
+
+include::{snippets}/v1/pharmacy-delete/curl-request.adoc[]
+
+One showing the HTTP request:
+
+include::{snippets}/v1/pharmacy-delete/http-request.adoc[]
+
+And one showing the HTTP response:
+
+include::{snippets}/v1/pharmacy-delete/http-response.adoc[]
+
+Response Body:
+include::{snippets}/v1/pharmacy-delete/response-body.adoc[]
+
+Request Fields:
+include::{snippets}/v1/pharmacy-delete/path-parameters.adoc[]
