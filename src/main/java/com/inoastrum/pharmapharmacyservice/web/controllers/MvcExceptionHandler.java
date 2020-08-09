@@ -26,6 +26,6 @@ public class MvcExceptionHandler {
 
     @ExceptionHandler({PharmacyNotFoundException.class, StaffNotFoundException.class})
     public ResponseEntity<ErrorObject> notFoundHandler(Exception e) {
-        return new ResponseEntity<>(new ErrorObject(e.getMessage()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new ErrorObject(e.getMessage(), e.getClass()), HttpStatus.NOT_FOUND);
     }
 }
