@@ -56,6 +56,6 @@ public class PharmacyServiceImpl implements PharmacyService {
 
     @Override
     public Pharmacy findPharmacyById(UUID pharmacyId) {
-        return pharmacyRepository.findById(pharmacyId).orElse(null);
+        return pharmacyRepository.findById(pharmacyId).orElseThrow(PharmacyNotFoundException::new);
     }
 }

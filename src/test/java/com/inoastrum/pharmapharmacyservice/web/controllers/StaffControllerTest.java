@@ -2,6 +2,7 @@ package com.inoastrum.pharmapharmacyservice.web.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.inoastrum.pharmapharmacyservice.services.StaffService;
+import com.inoastrum.pharmapharmacyservice.web.models.PharmacyDto;
 import com.inoastrum.pharmapharmacyservice.web.models.StaffDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,8 +24,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
-import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
-import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.restdocs.snippet.Attributes.key;
@@ -74,6 +75,31 @@ class StaffControllerTest {
                                 fields.withPath("name").description("Name of the staff"),
                                 fields.withPath("pharmacyId").description("ID of the pharmacy that staff works in"),
                                 fields.withPath("roleId").description("ID of the role of the staff")
+                        )));
+    }
+
+    @Test
+    void saveNewStaff() throws Exception {
+        String staffDtoJson = objectMapper.writeValueAsString(getValidDto());
+
+        ConstrainedFields fields = new ConstrainedFields(PharmacyDto.class);
+
+        given(staffService.saveNewPharmacy(any(StaffDto.class))).willReturn(getValidDto());
+
+        mockMvc.perform(post("/api/v1/staff/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(staffDtoJson)
+                .characterEncoding("utf-8"))
+                .andExpect(status().isCreated())
+                .andDo(document("v1/staff-post",
+                        requestFields(
+                                fields.withPath("id").ignored(),
+                                fields.withPath("version").ignored(),
+                                fields.withPath("createdDate").ignored(),
+                                fields.withPath("lastModifiedDate").ignored(),
+                                fields.withPath("name").description("Name of the staff"),
+                                fields.withPath("pharmacyId").description("ID of the pharmacy"),
+                                fields.withPath("roleId").description("ID of the role of staff")
                         )));
     }
 

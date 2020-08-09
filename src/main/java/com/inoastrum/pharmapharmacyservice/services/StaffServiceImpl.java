@@ -20,4 +20,9 @@ public class StaffServiceImpl implements StaffService {
     public StaffDto findStaffDtoById(UUID staffId) {
         return staffMapper.staffToStaffDto(staffRepository.findById(staffId).orElseThrow(StaffNotFoundException::new));
     }
+
+    @Override
+    public StaffDto saveNewPharmacy(StaffDto staffDto) {
+        return staffMapper.staffToStaffDto(staffRepository.save(staffMapper.staffDtoToStaff(staffDto)));
+    }
 }

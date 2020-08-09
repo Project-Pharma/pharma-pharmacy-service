@@ -6,10 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -24,5 +22,10 @@ public class StaffController {
     @GetMapping("/{staffId}")
     public ResponseEntity<StaffDto> getStaffById(@PathVariable UUID staffId) {
         return new ResponseEntity<>(staffService.findStaffDtoById(staffId), HttpStatus.OK);
+    }
+
+    @PostMapping()
+    public ResponseEntity<UUID> createNewStaff(@RequestBody @Validated StaffDto staffDto) {
+        return new ResponseEntity<>(staffService.saveNewPharmacy(staffDto).getId(), HttpStatus.CREATED);
     }
 }

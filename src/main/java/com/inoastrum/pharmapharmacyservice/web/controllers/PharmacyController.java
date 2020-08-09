@@ -25,7 +25,7 @@ public class PharmacyController {
     }
 
     @PostMapping
-    public ResponseEntity saveNewPharmacy(@RequestBody @Validated PharmacyDto pharmacyDto) {
+    public ResponseEntity<UUID> saveNewPharmacy(@RequestBody @Validated PharmacyDto pharmacyDto) {
         return new ResponseEntity<>(pharmacyService.saveNewPharmacy(pharmacyDto).getId(), HttpStatus.CREATED);
     }
 
