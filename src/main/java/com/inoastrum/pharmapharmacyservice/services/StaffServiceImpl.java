@@ -1,5 +1,6 @@
 package com.inoastrum.pharmapharmacyservice.services;
 
+import com.inoastrum.pharmapharmacyservice.domain.Staff;
 import com.inoastrum.pharmapharmacyservice.exceptions.StaffNotFoundException;
 import com.inoastrum.pharmapharmacyservice.repositories.StaffRepository;
 import com.inoastrum.pharmapharmacyservice.web.mappers.StaffMapper;
@@ -22,7 +23,9 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public StaffDto saveNewPharmacy(StaffDto staffDto) {
-        return staffMapper.staffToStaffDto(staffRepository.save(staffMapper.staffDtoToStaff(staffDto)));
+    public StaffDto saveNewStaff(StaffDto staffDto) {
+        Staff staff = staffRepository.save(staffMapper.staffDtoToStaff(staffDto));
+        staff.getPharmacy().getStaffs().add(staff);
+        return staffMapper.staffToStaffDto(staff);
     }
 }

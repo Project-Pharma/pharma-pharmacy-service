@@ -17,6 +17,7 @@ import org.springframework.restdocs.payload.FieldDescriptor;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -74,6 +75,19 @@ class PharmacyControllerTest {
                                 fields.withPath("name").description("Name of the pharmacy"),
                                 fields.withPath("address").description("Address of the pharmacy"),
                                 fields.withPath("delivering").description("Is this pharmacy delivering")
+                        )));
+    }
+
+    @Test
+    void getStaffsByPharmacyId() throws Exception {
+        given(pharmacyService.findStaffsByPharmacyId(any(UUID.class))).willReturn(new ArrayList<>());
+
+        mockMvc.perform(get("/api/v1/pharmacy/{pharmacyId}/staffs", UUID.randomUUID().toString())
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andDo(document("v1/pharmacy-staffs-get",
+                        pathParameters(
+                                parameterWithName("pharmacyId").description("UUID of desired pharmacy")
                         )));
     }
 

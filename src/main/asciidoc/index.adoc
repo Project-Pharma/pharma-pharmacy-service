@@ -25,6 +25,23 @@ include::{snippets}/v1/pharmacy-get/response-body.adoc[]
 Response Fields:
 include::{snippets}/v1/pharmacy-get/response-fields.adoc[]
 
+GET STAFFS FROM PHARMACY
+
+One showing how to make a request using cURL:
+
+include::{snippets}/v1/pharmacy-staffs-get/curl-request.adoc[]
+
+One showing the HTTP request:
+
+include::{snippets}/v1/pharmacy-staffs-get/http-request.adoc[]
+
+And one showing the HTTP response:
+
+include::{snippets}/v1/pharmacy-staffs-get/http-response.adoc[]
+
+Response Body:
+include::{snippets}/v1/pharmacy-staffs-get/response-body.adoc[]
+
 
 NEW PHARMACY
 
@@ -87,3 +104,48 @@ include::{snippets}/v1/pharmacy-delete/response-body.adoc[]
 
 Request Fields:
 include::{snippets}/v1/pharmacy-delete/path-parameters.adoc[]
+
+
+##-----------##
+
+GET STAFF
+
+One showing how to make a request using cURL:
+
+include::{snippets}/v1/staff-get/curl-request.adoc[]
+
+One showing the HTTP request:
+
+include::{snippets}/v1/staff-get/http-request.adoc[]
+
+And one showing the HTTP response:
+
+include::{snippets}/v1/staff-get/http-response.adoc[]
+
+Response Body:
+include::{snippets}/v1/staff-get/response-body.adoc[]
+
+Response Fields:
+include::{snippets}/v1/staff-get/response-fields.adoc[]
+
+
+NEW STAFF
+
+One showing how to make a request using cURL:
+
+include::{snippets}/v1/staff-post/curl-request.adoc[]
+
+One showing the HTTP request:
+
+include::{snippets}/v1/staff-post/http-request.adoc[]
+
+And one showing the HTTP response:
+
+include::{snippets}/v1/staff-post/http-response.adoc[]
+
+Response Body:
+include::{snippets}/v1/staff-post/response-body.adoc[]
+
+Request Fields:
+include::{snippets}/v1/staff-post/request-fields.adoc[]
+

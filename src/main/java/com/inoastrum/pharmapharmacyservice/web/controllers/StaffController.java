@@ -26,6 +26,6 @@ public class StaffController {
 
     @PostMapping()
     public ResponseEntity<UUID> createNewStaff(@RequestBody @Validated StaffDto staffDto) {
-        return new ResponseEntity<>(staffService.saveNewPharmacy(staffDto).getId(), HttpStatus.CREATED);
+        return new ResponseEntity<>(staffService.saveNewStaff(staffDto).getId(), HttpStatus.CREATED);
     }
 }

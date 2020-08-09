@@ -84,7 +84,7 @@ class StaffControllerTest {
 
         ConstrainedFields fields = new ConstrainedFields(PharmacyDto.class);
 
-        given(staffService.saveNewPharmacy(any(StaffDto.class))).willReturn(getValidDto());
+        given(staffService.saveNewStaff(any(StaffDto.class))).willReturn(getValidDto());
 
         mockMvc.perform(post("/api/v1/staff/")
                 .contentType(MediaType.APPLICATION_JSON)

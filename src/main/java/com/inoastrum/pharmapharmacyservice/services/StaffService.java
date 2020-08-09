@@ -7,5 +7,5 @@ import java.util.UUID;
 public interface StaffService {
     StaffDto findStaffDtoById(UUID staffId);
 
-    StaffDto saveNewPharmacy(StaffDto staffDto);
+    StaffDto saveNewStaff(StaffDto staffDto);
 }
