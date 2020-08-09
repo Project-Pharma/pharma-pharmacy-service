@@ -34,5 +34,5 @@ public class PharmacyDto {
     @NotBlank
     private String address;
 
-    private Boolean delivering = false;
+    private Boolean delivering;
 }

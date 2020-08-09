@@ -8,4 +8,6 @@ public interface PharmacyService {
     PharmacyDto findPharmacyById(UUID pharmacyId);
 
     PharmacyDto saveNewPharmacy(PharmacyDto pharmacyDto);
+
+    void updatePharmacy(UUID pharmacyId, PharmacyDto pharmacyDto);
 }

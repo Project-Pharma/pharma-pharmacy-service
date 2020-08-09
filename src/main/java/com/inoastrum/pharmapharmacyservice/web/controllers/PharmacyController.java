@@ -29,4 +29,10 @@ public class PharmacyController {
         return new ResponseEntity<>(pharmacyService.saveNewPharmacy(pharmacyDto).getId(), HttpStatus.CREATED);
     }
 
+    @PutMapping("/{pharmacyId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updatePharmacy(@PathVariable UUID pharmacyId, @RequestBody @Validated PharmacyDto pharmacyDto) {
+        pharmacyService.updatePharmacy(pharmacyId, pharmacyDto);
+    }
+
 }
