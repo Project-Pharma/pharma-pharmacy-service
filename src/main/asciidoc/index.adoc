@@ -1,4 +1,4 @@
-= SFG Brewery Order Service Docs
+= Pharma Pharmacy Service Docs
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
