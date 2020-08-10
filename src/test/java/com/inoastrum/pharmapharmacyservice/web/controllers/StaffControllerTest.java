@@ -23,8 +23,7 @@ import java.util.UUID;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
@@ -102,6 +101,46 @@ class StaffControllerTest {
                                 fields.withPath("roleId").description("ID of the role of staff")
                         )));
     }
+
+    @Test
+    void updateStaff() throws Exception {
+        String staffDtoJson = objectMapper.writeValueAsString(getValidDto());
+
+        ConstrainedFields fields = new ConstrainedFields(StaffDto.class);
+
+        mockMvc.perform(put("/api/v1/staff/{staffId}", UUID.randomUUID().toString())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(staffDtoJson)
+                .characterEncoding("utf-8"))
+                .andExpect(status().isNoContent())
+                .andDo(document("v1/staff-put",
+                        pathParameters(
+                                parameterWithName("staffId").description("UUID of desired staff to update")
+                        ),
+                        requestFields(
+                                fields.withPath("id").ignored(),
+                                fields.withPath("version").ignored(),
+                                fields.withPath("createdDate").ignored(),
+                                fields.withPath("lastModifiedDate").ignored(),
+                                fields.withPath("name").description("Name of the staff"),
+                                fields.withPath("pharmacyId").description("Pharmacy ID of where staff works at"),
+                                fields.withPath("roleId").description("ID of the role of staff")
+                        )));
+    }
+
+    @Test
+    void deleteStaff() throws Exception {
+        ConstrainedFields fields = new ConstrainedFields(StaffDto.class);
+
+        mockMvc.perform(delete("/api/v1/staff/{staffId}", UUID.randomUUID().toString())
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent())
+                .andDo(document("v1/staff-delete",
+                        pathParameters(
+                                parameterWithName("staffId").description("UUID of desired staff to delete")
+                        )));
+    }
+
 
     private static class ConstrainedFields {
 

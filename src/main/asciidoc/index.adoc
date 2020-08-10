@@ -149,3 +149,44 @@ include::{snippets}/v1/staff-post/response-body.adoc[]
 Request Fields:
 include::{snippets}/v1/staff-post/request-fields.adoc[]
 
+
+UPDATE STAFF
+
+One showing how to make a request using cURL:
+
+include::{snippets}/v1/staff-put/curl-request.adoc[]
+
+One showing the HTTP request:
+
+include::{snippets}/v1/staff-put/http-request.adoc[]
+
+And one showing the HTTP response:
+
+include::{snippets}/v1/staff-put/http-response.adoc[]
+
+Response Body:
+include::{snippets}/v1/staff-put/response-body.adoc[]
+
+Request Fields:
+include::{snippets}/v1/staff-put/request-fields.adoc[]
+
+
+DELETE STAFF
+
+One showing how to make a request using cURL:
+
+include::{snippets}/v1/staff-delete/curl-request.adoc[]
+
+One showing the HTTP request:
+
+include::{snippets}/v1/staff-delete/http-request.adoc[]
+
+And one showing the HTTP response:
+
+include::{snippets}/v1/staff-delete/http-response.adoc[]
+
+Response Body:
+include::{snippets}/v1/staff-delete/response-body.adoc[]
+
+Request Fields:
+include::{snippets}/v1/staff-delete/path-parameters.adoc[]

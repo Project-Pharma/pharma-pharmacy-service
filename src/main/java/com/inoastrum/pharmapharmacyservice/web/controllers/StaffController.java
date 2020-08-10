@@ -28,4 +28,16 @@ public class StaffController {
     public ResponseEntity<UUID> createNewStaff(@RequestBody @Validated StaffDto staffDto) {
         return new ResponseEntity<>(staffService.saveNewStaff(staffDto).getId(), HttpStatus.CREATED);
     }
+
+    @PutMapping("/{staffId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateStaff(@PathVariable UUID staffId, @RequestBody @Validated StaffDto staffDto) {
+        staffService.updateStaff(staffId, staffDto);
+    }
+
+    @DeleteMapping("/{staffId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteStaff(@PathVariable UUID staffId) {
+        staffService.deleteRoleById(staffId);
+    }
 }

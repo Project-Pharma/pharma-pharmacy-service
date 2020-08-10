@@ -28,4 +28,20 @@ public class StaffServiceImpl implements StaffService {
         staff.getPharmacy().getStaffs().add(staff);
         return staffMapper.staffToStaffDto(staff);
     }
+
+    @Override
+    public void updateStaff(UUID staffId, StaffDto staffDto) {
+        Staff staff = staffRepository.findById(staffId).orElseThrow(StaffNotFoundException::new);
+
+        staff.setName(staffDto.getName());
+        staff.setRoleId(staffDto.getRoleId());
+        staff.setPharmacy(staffMapper.staffDtoToStaff(staffDto).getPharmacy());
+
+        staffRepository.save(staff);
+    }
+
+    @Override
+    public void deleteRoleById(UUID staffId) {
+        staffRepository.deleteById(staffId);
+    }
 }
